@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="RegistrationFormModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="LoginTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PasswordTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="UserTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoginId" Type="int" />
+          <Property Name="PasswordId" Type="int" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="50" />
+          <Property Name="E-mail" Type="varchar" MaxLength="50" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="fk_User_to_Login">
+          <End Role="LoginTable" Type="Self.LoginTable" Multiplicity="0..1" />
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoginTable">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserTable">
+              <PropertyRef Name="LoginId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_User_to_Pass">
+          <End Role="PasswordTable" Type="Self.PasswordTable" Multiplicity="0..1" />
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PasswordTable">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserTable">
+              <PropertyRef Name="PasswordId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RegistrationFormModelStoreContainer">
+          <EntitySet Name="LoginTable" EntityType="Self.LoginTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PasswordTable" EntityType="Self.PasswordTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserTable" EntityType="Self.UserTable" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_User_to_Login" Association="Self.fk_User_to_Login">
+            <End Role="LoginTable" EntitySet="LoginTable" />
+            <End Role="UserTable" EntitySet="UserTable" />
+          </AssociationSet>
+          <AssociationSet Name="fk_User_to_Pass" Association="Self.fk_User_to_Pass">
+            <End Role="PasswordTable" EntitySet="PasswordTable" />
+            <End Role="UserTable" EntitySet="UserTable" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RegistrationFormModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="LoginTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="UserTable" Relationship="Self.fk_User_to_Login" FromRole="LoginTable" ToRole="UserTable" />
+        </EntityType>
+        <EntityType Name="PasswordTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="UserTable" Relationship="Self.fk_User_to_Pass" FromRole="PasswordTable" ToRole="UserTable" />
+        </EntityType>
+        <EntityType Name="UserTable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoginId" Type="Int32" />
+          <Property Name="PasswordId" Type="Int32" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="E_mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="LoginTable" Relationship="Self.fk_User_to_Login" FromRole="UserTable" ToRole="LoginTable" />
+          <NavigationProperty Name="PasswordTable" Relationship="Self.fk_User_to_Pass" FromRole="UserTable" ToRole="PasswordTable" />
+        </EntityType>
+        <Association Name="fk_User_to_Login">
+          <End Role="LoginTable" Type="Self.LoginTable" Multiplicity="0..1" />
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoginTable">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserTable">
+              <PropertyRef Name="LoginId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_User_to_Pass">
+          <End Role="PasswordTable" Type="Self.PasswordTable" Multiplicity="0..1" />
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PasswordTable">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserTable">
+              <PropertyRef Name="PasswordId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RegistrationFormEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="LoginTable" EntityType="Self.LoginTable" />
+          <EntitySet Name="PasswordTable" EntityType="Self.PasswordTable" />
+          <EntitySet Name="UserTable" EntityType="Self.UserTable" />
+          <AssociationSet Name="fk_User_to_Login" Association="Self.fk_User_to_Login">
+            <End Role="LoginTable" EntitySet="LoginTable" />
+            <End Role="UserTable" EntitySet="UserTable" />
+          </AssociationSet>
+          <AssociationSet Name="fk_User_to_Pass" Association="Self.fk_User_to_Pass">
+            <End Role="PasswordTable" EntitySet="PasswordTable" />
+            <End Role="UserTable" EntitySet="UserTable" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RegistrationFormModelStoreContainer" CdmEntityContainer="RegistrationFormEntities">
+          <EntitySetMapping Name="LoginTable">
+            <EntityTypeMapping TypeName="RegistrationFormModel.LoginTable">
+              <MappingFragment StoreEntitySet="LoginTable">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PasswordTable">
+            <EntityTypeMapping TypeName="RegistrationFormModel.PasswordTable">
+              <MappingFragment StoreEntitySet="PasswordTable">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserTable">
+            <EntityTypeMapping TypeName="RegistrationFormModel.UserTable">
+              <MappingFragment StoreEntitySet="UserTable">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="LoginId" ColumnName="LoginId" />
+                <ScalarProperty Name="PasswordId" ColumnName="PasswordId" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="E_mail" ColumnName="E-mail" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
