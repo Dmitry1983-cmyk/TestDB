@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data.SqlClient;
 using System.Web.ModelBinding;
 using TestDB.MVC;
 
@@ -9,28 +8,32 @@ namespace TestDB.HTML
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (IsPostBack)
-            {
-                Model rst = new Model();
-                if (TryUpdateModel(rst, new FormValueProvider(ModelBindingExecutionContext)))
-                {
-                    Controller.GetController().AddModels(rst);
-                    if (rst.Login != null && rst.Password != null)
-                    {
-                        using (RegistrationFormEntities reg = new RegistrationFormEntities())
-                        {
 
-                            foreach (var user in reg.LoginTable)
-                            {
-                                string html = String.Format("<tr><td>{0}</td></tr>",user.Login);Response.Write(html);
-                            }
-                        }
-                        Response.Redirect("dataUser.html");
-                    }
-                    else
-                    {
-                        Response.Redirect("wrongDataAutorization.html");
-                    }
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Model rst = new Model();
+            if (TryUpdateModel(rst, new FormValueProvider(ModelBindingExecutionContext)))
+            {
+                Controller.GetController().AddModels(rst);
+                Response.Redirect("RegForm.aspx");
+            }
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            Model rst = new Model();
+            if (TryUpdateModel(rst, new FormValueProvider(ModelBindingExecutionContext)))
+            {
+                Controller.GetController().AddModels(rst);
+                if (login.Value != "" && pass.Value != "")
+                {
+                    Response.Redirect("dataUser.html");
+                }
+                else
+                {
+                    Response.Redirect("wrongDataAutorization.html");
                 }
             }
         }

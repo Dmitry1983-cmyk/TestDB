@@ -5,6 +5,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <style type="text/css">
+        #name {
+            margin-left: 29px;
+        }
+        #email {
+            margin-left: 16px;
+        }
+        #login {
+            margin-left: 11px;
+        }
+        #password {
+            margin-left: 6px;
+        }
+        #btnreg {
+            width: 182px;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
