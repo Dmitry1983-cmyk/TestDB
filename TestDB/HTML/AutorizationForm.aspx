@@ -22,8 +22,8 @@
             <label >Введите пароль</label>
             <input type="text" id="pass" runat="server"/>
             <br/><br/>
-            <%--<button id="btn_acept" type="submit">Войти</button><br/><br/>--%>
-            <%--<button type="submit" name="btn_reg" value="registr" style="width: 230px">Регистрация</button>--%>
+           <%--<button id="btn_acept" type="submit">Войти</button><br/><br/>
+            <button type="submit" name="btn_reg" value="registr" style="width: 230px">Регистрация</button>--%>
              <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Вход" Width="240px" /><br/><br/>
              <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Регистрация" Width="240px" />
             

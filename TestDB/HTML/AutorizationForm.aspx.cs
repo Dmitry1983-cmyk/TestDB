@@ -13,27 +13,33 @@ namespace TestDB.HTML
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            Model rst = new Model();
-            if (TryUpdateModel(rst, new FormValueProvider(ModelBindingExecutionContext)))
+            if(IsPostBack)
             {
-                Controller.GetController().AddModels(rst);
-                Response.Redirect("RegForm.aspx");
+                Model rst = new Model();
+                if (TryUpdateModel(rst, new FormValueProvider(ModelBindingExecutionContext)))
+                {
+                    Controller.GetController().AddModels(rst);
+                    Response.Redirect("RegForm.aspx");
+                }
             }
         }
 
         protected void Button2_Click(object sender, EventArgs e)
         {
-            Model rst = new Model();
-            if (TryUpdateModel(rst, new FormValueProvider(ModelBindingExecutionContext)))
+            if(IsPostBack)
             {
-                Controller.GetController().AddModels(rst);
-                if (login.Value != "" && pass.Value != "")
+                Model rst = new Model();
+                if (TryUpdateModel(rst, new FormValueProvider(ModelBindingExecutionContext)))
                 {
-                    Response.Redirect("dataUser.html");
-                }
-                else
-                {
-                    Response.Redirect("wrongDataAutorization.html");
+                    Controller.GetController().AddModels(rst);
+                    if (login.Value != "" && pass.Value != "")
+                    {
+                        Response.Redirect("dataUser.html");
+                    }
+                    else
+                    {
+                        Response.Redirect("wrongDataAutorization.html");
+                    }
                 }
             }
         }
