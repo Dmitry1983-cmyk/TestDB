@@ -112,6 +112,21 @@
     <Reference Include="Microsoft.Identity.Client, Version=3.0.8.0, Culture=neutral, PublicKeyToken=0a613f4dd989e8ae, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Identity.Client.3.0.8\lib\net45\Microsoft.Identity.Client.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.3.3.0\lib\net45\Ninject.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Common, Version=3.3.2.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.Common.3.3.2\lib\net45\Ninject.Web.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Common.WebHost, Version=3.3.2.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.Web.Common.WebHost.3.3.2\lib\net45\Ninject.Web.Common.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
@@ -163,6 +178,9 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="HTML\AutorizationForm.aspx" />
@@ -171,6 +189,12 @@
     <Content Include="HTML\RegUserDone.html" />
     <Content Include="HTML\wrongData.html" />
     <Content Include="HTML\wrongDataAutorization.html" />
+    <Content Include="obj\Debug\TempPE\RegistrationForm_Model.Context.cs.dll" />
+    <Content Include="obj\Debug\TempPE\RegistrationForm_Model.cs.dll" />
+    <Content Include="obj\Debug\TempPE\RegistrationForm_Model.Designer.cs.dll" />
+    <Content Include="obj\Debug\TestDB.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\TestDB.dll" />
+    <Content Include="obj\Debug\TestDB.pdb" />
     <Content Include="RegistrationForm_Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>RegistrationForm_Model.edmx</DependentUpon>
@@ -185,6 +209,9 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\DIconfiguration.cs" />
+    <Compile Include="App_Start\NinjectWeb.cs" />
+    <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="HTML\AutorizationForm.aspx.cs">
       <DependentUpon>AutorizationForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -204,9 +231,29 @@
     </Compile>
     <Compile Include="MVC\Controller.cs" />
     <Compile Include="MVC\Model.cs" />
+    <Compile Include="MVC\RegistrationRespounse.cs" />
+    <Compile Include="MVC\Repository\IRegistrationRepository.cs" />
+    <Compile Include="MVC\Repository\IRepository.cs" />
+    <Compile Include="MVC\Repository\MemoryRepository.cs" />
+    <Compile Include="MVC\Repository\RegistrationRepository.cs" />
+    <Compile Include="MVC\VisitorsRespounse.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="obj\Release\net45\NuGet\C2BCC551415FC0CF557304FB71F1DCCF64D0EE64\Ninject.Web.Common.WebHost\3.3.2\App_Start\NinjectWebCommon.cs" />
     <Compile Include="PasswordTable.cs">
       <DependentUpon>RegistrationForm_Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Presenter\IPresenter.cs" />
+    <Compile Include="Presenter\IRegistrator.cs" />
+    <Compile Include="Presenter\RegistratorPresenter.cs" />
+    <Compile Include="Presenter\Results\DataResult.cs" />
+    <Compile Include="Presenter\Results\IRegistratorResult.cs" />
+    <Compile Include="Presenter\Results\IResult.cs" />
+    <Compile Include="Presenter\Results\RedirectRegistation.cs" />
+    <Compile Include="Presenter\Results\RedirectResult.cs" />
+    <Compile Include="Presenter\Results\RegistrationResult.cs" />
+    <Compile Include="Presenter\RSVPPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegistrationForm_Model.Context.cs">
       <AutoGen>True</AutoGen>
@@ -228,6 +275,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\RegistrationForm_Model.csdl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\RegistrationForm_Model.msl" />
+    <Content Include="obj\Debug\edmxResourcesToEmbed\RegistrationForm_Model.ssdl" />
+    <Content Include="obj\Debug\TestDB.csproj.CopyComplete" />
+    <Content Include="obj\Debug\TestDB.csproj.CoreCompileInputs.cache" />
+    <Content Include="obj\Debug\TestDB.csprojAssemblyReference.cache" />
     <None Include="packages.config" />
     <EntityDeploy Include="RegistrationForm_Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

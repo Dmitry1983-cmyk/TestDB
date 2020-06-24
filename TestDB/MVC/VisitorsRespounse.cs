@@ -6,17 +6,15 @@ using System.Web;
 
 namespace TestDB.MVC
 {
-    public class Model
+    public class VisitorsRespounse
     {
         [Required]
         public string Name { get; set; }
         [Required]
-        public string PhoneNumber { get; set; }
-        [Required]
         public string Email { get; set; }
         [Required]
-        public string Login { get; set; }
+        public string Phone { get; set; }
         [Required]
-        public string Password { get; set; }
+        public bool? WillAttend { get; set; }
     }
 }
